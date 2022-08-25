@@ -4,17 +4,18 @@ import Shop from "./Shop";
 import About from "./About";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+// To add more routes, create them under <Routes>
+
 function App() {
   return (
     <Router>
-      <div>
-        <Nav>
-          <Routes>
-            <Route path="/" exact element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/shop" exact element={<Shop />} />
-          </Routes>
-        </Nav>
+      <div className="App">
+        <Nav />
+        <Routes>
+          <Route path="/" exact element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/shop" exact element={<Shop />} />
+        </Routes>
       </div>
     </Router>
   );
