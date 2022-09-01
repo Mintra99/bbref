@@ -36,7 +36,7 @@ export default function Stats() {
   const [parsedCsvData, setParsedCsvData] = useState([]);
   const [sortedField, setSortedField] = useState(null);
   const [conference, setConference] = useState("East");
-  const [year, setYear] = useState(2022);
+  const [year, setYear] = useState("2022");
   const csv_data = useRef(East_conf_2022);
 
   useEffect(() => {
@@ -48,85 +48,114 @@ export default function Stats() {
     // }
 
     // Selects year and conference
-    switch(year){
-      case 2010:
+    switch (year) {
+      case "2010":
         if (conference === "East") {
           csv_data.current = East_conf_2010;
+          break;
         } else {
           csv_data.current = West_conf_2010;
+          break;
         }
-      case 2011:
+      case "2011":
         if (conference === "East") {
           csv_data.current = East_conf_2011;
+          break;
         } else {
           csv_data.current = West_conf_2011;
+          break;
         }
-      case 2012:
+      case "2012":
         if (conference === "East") {
           csv_data.current = East_conf_2012;
+          break;
         } else {
           csv_data.current = West_conf_2012;
+          break;
         }
-      case 2013:
+      case "2013":
         if (conference === "East") {
           csv_data.current = East_conf_2013;
+          break;
         } else {
           csv_data.current = West_conf_2013;
+          break;
         }
-      case 2014:
+      case "2014":
         if (conference === "East") {
           csv_data.current = East_conf_2014;
+          break;
         } else {
           csv_data.current = West_conf_2014;
+          break;
         }
-      case 2015:
+      case "2015":
         if (conference === "East") {
           csv_data.current = East_conf_2015;
+          break;
         } else {
           csv_data.current = West_conf_2015;
+          break;
         }
-      case 2016:
+      case "2016":
         if (conference === "East") {
           csv_data.current = East_conf_2016;
+          break;
         } else {
           csv_data.current = West_conf_2016;
+          break;
         }
-      case 2017:
+      case "2017":
         if (conference === "East") {
           csv_data.current = East_conf_2017;
+          break;
         } else {
           csv_data.current = West_conf_2017;
+          break;
         }
-      case 2018:
+      case "2018":
         if (conference === "East") {
           csv_data.current = East_conf_2018;
+          break;
         } else {
           csv_data.current = West_conf_2018;
+          break;
         }
-      case 2019:
+      case "2019":
         if (conference === "East") {
           csv_data.current = East_conf_2019;
+          break;
         } else {
           csv_data.current = West_conf_2019;
+          break;
         }
-      case 2020:
+      case "2020":
         if (conference === "East") {
           csv_data.current = East_conf_2020;
+          break;
         } else {
           csv_data.current = West_conf_2020;
+          break;
         }
-      case 2021:
+      case "2021":
         if (conference === "East") {
           csv_data.current = East_conf_2021;
+          break;
         } else {
           csv_data.current = West_conf_2021;
+          break;
         }
-      case 2022:
+      case "2022":
         if (conference === "East") {
           csv_data.current = East_conf_2022;
+          break;
         } else {
           csv_data.current = West_conf_2022;
+          break;
         }
+      default:
+        console.log("HOW BRO???");
+        break;
     }
 
     // Loads csv file
@@ -145,36 +174,42 @@ export default function Stats() {
 
   return (
     <div className="Stats" style={{ margin: "20px" }}>
-      <DropdownButton
-        variant="dark"
-        title="Select a conference"
-        id="dropdown-menu-align-right"
-        onSelect={(e) => setConference(e)}
-      >
-        <Dropdown.Item eventKey={"East"}>East</Dropdown.Item>
-        <Dropdown.Item eventKey={"West"}>West</Dropdown.Item>
-      </DropdownButton>
+      <div className="Stats-dropdown" style={{ display: "flex", gap: "1rem" }}>
+        <DropdownButton
+          variant="dark"
+          title="Select a conference"
+          id="dropdown-menu-align-right"
+          onSelect={(e) => setConference(e)}
+        >
+          <Dropdown.Item eventKey={"East"}>East</Dropdown.Item>
+          <Dropdown.Item eventKey={"West"}>West</Dropdown.Item>
+        </DropdownButton>
 
-      <DropdownButton
-        variant="dark"
-        title="Select a Year"
-        id="dropdown-menu-align-right"
-        onSelect={(ele) => setYear(ele)}
-      >
-        <Dropdown.Item eventKey={2022}>2022</Dropdown.Item>
-        <Dropdown.Item eventKey={2020}>2022</Dropdown.Item>
-        <Dropdown.Item eventKey={2019}>2019</Dropdown.Item>
-        <Dropdown.Item eventKey={2018}>2018</Dropdown.Item>
-        <Dropdown.Item eventKey={2017}>2017</Dropdown.Item>
-        <Dropdown.Item eventKey={2016}>2016</Dropdown.Item>
-        <Dropdown.Item eventKey={2015}>2015</Dropdown.Item>
-        <Dropdown.Item eventKey={2014}>2014</Dropdown.Item>
-        <Dropdown.Item eventKey={2013}>2013</Dropdown.Item>
-        <Dropdown.Item eventKey={2012}>2012</Dropdown.Item>
-        <Dropdown.Item eventKey={2011}>2011</Dropdown.Item>
-        <Dropdown.Item eventKey={2010}>2010</Dropdown.Item>
-      </DropdownButton>
-      <h2>{conference}ern conference {year}</h2>
+        <DropdownButton
+          variant="dark"
+          title="Select a Year"
+          id="dropdown-menu-align-right"
+          onSelect={(ele) => setYear(ele)}
+        >
+          <Dropdown.Item eventKey={2022}>2022</Dropdown.Item>
+          <Dropdown.Item eventKey={2021}>2021</Dropdown.Item>
+          <Dropdown.Item eventKey={2020}>2020</Dropdown.Item>
+          <Dropdown.Item eventKey={2019}>2019</Dropdown.Item>
+          <Dropdown.Item eventKey={2018}>2018</Dropdown.Item>
+          <Dropdown.Item eventKey={2017}>2017</Dropdown.Item>
+          <Dropdown.Item eventKey={2016}>2016</Dropdown.Item>
+          <Dropdown.Item eventKey={2015}>2015</Dropdown.Item>
+          <Dropdown.Item eventKey={2014}>2014</Dropdown.Item>
+          <Dropdown.Item eventKey={2013}>2013</Dropdown.Item>
+          <Dropdown.Item eventKey={2012}>2012</Dropdown.Item>
+          <Dropdown.Item eventKey={2011}>2011</Dropdown.Item>
+          <Dropdown.Item eventKey={2010}>2010</Dropdown.Item>
+        </DropdownButton>
+      </div>
+
+      <h2>
+        {conference}ern conference {year}
+      </h2>
       <Table className="Statstable" striped bordered hover size="sm">
         <thead>
           <tr>
