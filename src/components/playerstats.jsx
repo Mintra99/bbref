@@ -27,13 +27,6 @@ export default function PlayerStats() {
   const csv_data = useRef(players_2022);
 
   useEffect(() => {
-    // Selects conference
-    // if (conference === "East") {
-    //   csv_data.current = East_conf_2022;
-    // } else {
-    //   csv_data.current = West_conf_2022;
-    // }
-
     // Selects year and conference
     switch (year) {
       case "2010":

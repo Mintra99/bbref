@@ -33,7 +33,7 @@ import West_conf_2011 from "../data/conference/west/df_2011_West.csv";
 import East_conf_2010 from "../data/conference/east/df_2010_East.csv";
 import West_conf_2010 from "../data/conference/west/df_2010_West.csv";
 
-export default function Stats() {
+export default function TeamStats() {
   const [parsedCsvData, setParsedCsvData] = useState([]);
 
   const [sortedField, setSortedField] = useState(null);
