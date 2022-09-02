@@ -33,21 +33,6 @@ import West_conf_2011 from "../data/conference/west/df_2011_West.csv";
 import East_conf_2010 from "../data/conference/east/df_2010_East.csv";
 import West_conf_2010 from "../data/conference/west/df_2010_West.csv";
 
-// importing stats for players
-import players_2022 from "../data/players/df_2022_player.csv"
-import players_2021 from "../data/players/df_2021_player.csv"
-import players_2020 from "../data/players/df_2020_player.csv"
-import players_2019 from "../data/players/df_2019_player.csv"
-import players_2018 from "../data/players/df_2018_player.csv"
-import players_2017 from "../data/players/df_2017_player.csv"
-import players_2016 from "../data/players/df_2016_player.csv"
-import players_2015 from "../data/players/df_2015_player.csv"
-import players_2014 from "../data/players/df_2014_player.csv"
-import players_2013 from "../data/players/df_2013_player.csv"
-import players_2012 from "../data/players/df_2012_player.csv"
-import players_2011 from "../data/players/df_2011_player.csv"
-import players_2010 from "../data/players/df_2010_player.csv"
-
 export default function Stats() {
   const [parsedCsvData, setParsedCsvData] = useState([]);
   const [sortedField, setSortedField] = useState(null);
@@ -182,6 +167,7 @@ export default function Stats() {
       const decoder = new TextDecoder("utf-8");
       const csv = decoder.decode(result.value); // the csv text
       const results = Papa.parse(csv, { header: true }); // object with { data, errors, meta }
+      results.data.pop(); // removes the last value because it is empty
       const rows = results.data; // array of objects
       setParsedCsvData(rows);
     }
@@ -246,7 +232,22 @@ export default function Stats() {
             </th>
             <th>
               <button type="button" onClick={() => setSortedField("GB")}>
+                W/L%
+              </button>
+            </th>
+            <th>
+              <button type="button" onClick={() => setSortedField("GB")}>
                 GB
+              </button>
+            </th>
+            <th>
+              <button type="button" onClick={() => setSortedField("GB")}>
+                PS/G
+              </button>
+            </th>
+            <th>
+              <button type="button" onClick={() => setSortedField("GB")}>
+                PA/G
               </button>
             </th>
             <th>
@@ -263,7 +264,15 @@ export default function Stats() {
                 <td>{parsedData.Team}</td>
                 <td>{parsedData.W}</td>
                 <td>{parsedData.L}</td>
+                <td>
+                  {parseFloat(
+                    parseInt(parsedData.W) /
+                      (parseInt(parsedData.L) + parseInt(parsedData.W))
+                  ).toFixed(3)}
+                </td>
                 <td>{parsedData.GB}</td>
+                <td>{Object.values(parsedData)[6]}</td>
+                <td>{Object.values(parsedData)[7]}</td>
                 <td>{parsedData.Playoffs}</td>
               </tr>
             ))}

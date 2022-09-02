@@ -10,18 +10,12 @@ function Nav() {
       items={[
         { content: "About", url: "/about" },
         { content: "Shop", url: "/shop" },
-        { content: "Stats", url: "/stats" ,
-          children: [
-            { content: "players", url: "/stats/players" },
-            { content: "teams", url: "/stats/teams"}
-          ]},
         {
-          content: "Link with children",
-          url: "/children",
+          content: "Stats",
+          url: "/stats",
           children: [
-            { content: "child1", url: "/children/child1" },
-            { content: "child2", url: "/children/child2" },
-            { content: "child3", url: "/children/child3" },
+            { content: "teams", url: "/stats/teams" },
+            { content: "players", url: "/stats/players" },
           ],
         },
       ]}

@@ -6,19 +6,19 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Table from "react-bootstrap/Table";
 
 // importing stats for players
-import players_2022 from "../data/players/df_2022_player.csv"
-import players_2021 from "../data/players/df_2021_player.csv"
-import players_2020 from "../data/players/df_2020_player.csv"
-import players_2019 from "../data/players/df_2019_player.csv"
-import players_2018 from "../data/players/df_2018_player.csv"
-import players_2017 from "../data/players/df_2017_player.csv"
-import players_2016 from "../data/players/df_2016_player.csv"
-import players_2015 from "../data/players/df_2015_player.csv"
-import players_2014 from "../data/players/df_2014_player.csv"
-import players_2013 from "../data/players/df_2013_player.csv"
-import players_2012 from "../data/players/df_2012_player.csv"
-import players_2011 from "../data/players/df_2011_player.csv"
-import players_2010 from "../data/players/df_2010_player.csv"
+import players_2022 from "../data/players/df_2022_player.csv";
+import players_2021 from "../data/players/df_2021_player.csv";
+import players_2020 from "../data/players/df_2020_player.csv";
+import players_2019 from "../data/players/df_2019_player.csv";
+import players_2018 from "../data/players/df_2018_player.csv";
+import players_2017 from "../data/players/df_2017_player.csv";
+import players_2016 from "../data/players/df_2016_player.csv";
+import players_2015 from "../data/players/df_2015_player.csv";
+import players_2014 from "../data/players/df_2014_player.csv";
+import players_2013 from "../data/players/df_2013_player.csv";
+import players_2012 from "../data/players/df_2012_player.csv";
+import players_2011 from "../data/players/df_2011_player.csv";
+import players_2010 from "../data/players/df_2010_player.csv";
 
 export default function PlayerStats() {
   const [parsedCsvData, setParsedCsvData] = useState([]);
@@ -119,9 +119,7 @@ export default function PlayerStats() {
         </DropdownButton>
       </div>
 
-      <h2>
-        Player stats {year}
-      </h2>
+      <h2>Player stats {year}</h2>
       <Table className="Statstable" striped bordered hover size="sm">
         <thead>
           <tr>
@@ -152,12 +150,22 @@ export default function PlayerStats() {
             </th>
             <th>
               <button type="button" onClick={() => setSortedField("Playoffs")}>
-                Games started
+                GS
               </button>
             </th>
             <th>
               <button type="button" onClick={() => setSortedField("Playoffs")}>
-                Minutes played
+                Min
+              </button>
+            </th>
+            <th>
+              <button type="button" onClick={() => setSortedField("Playoffs")}>
+                FG%
+              </button>
+            </th>
+            <th>
+              <button type="button" onClick={() => setSortedField("Playoffs")}>
+                3P%
               </button>
             </th>
             <th>
@@ -175,6 +183,26 @@ export default function PlayerStats() {
                 AST
               </button>
             </th>
+            <th>
+              <button type="button" onClick={() => setSortedField("Playoffs")}>
+                STL
+              </button>
+            </th>
+            <th>
+              <button type="button" onClick={() => setSortedField("Playoffs")}>
+                BLK
+              </button>
+            </th>
+            <th>
+              <button type="button" onClick={() => setSortedField("Playoffs")}>
+                TOV
+              </button>
+            </th>
+            <th>
+              <button type="button" onClick={() => setSortedField("Playoffs")}>
+                PF
+              </button>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -188,9 +216,23 @@ export default function PlayerStats() {
                 <td>{parsedData.G}</td>
                 <td>{parsedData.GS}</td>
                 <td>{parsedData.MP}</td>
+                <td>
+                  {parseFloat(
+                    parseFloat(parsedData.FG) / parseFloat(parsedData.FGA)
+                  ).toFixed(3)}
+                </td>
+                <td>{Object.values(parsedData)[12]}</td>
                 <td>{parsedData.PTS}</td>
-                <td>{parsedData.REB}</td>
+                <td>
+                  {parseFloat(
+                    parseFloat(parsedData.ORB) + parseFloat(parsedData.DRB)
+                  ).toFixed(1)}
+                </td>
                 <td>{parsedData.AST}</td>
+                <td>{parsedData.STL}</td>
+                <td>{parsedData.BLK}</td>
+                <td>{parsedData.TOV}</td>
+                <td>{parsedData.PF}</td>
               </tr>
             ))}
         </tbody>
