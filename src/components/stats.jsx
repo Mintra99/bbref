@@ -5,6 +5,7 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import Table from "react-bootstrap/Table";
 
+// Importing data from conferences
 import East_conf_2022 from "../data/conference/east/df_2022_East.csv";
 import West_conf_2022 from "../data/conference/west/df_2022_West.csv";
 import East_conf_2021 from "../data/conference/east/df_2021_East.csv";
@@ -31,6 +32,21 @@ import East_conf_2011 from "../data/conference/east/df_2011_East.csv";
 import West_conf_2011 from "../data/conference/west/df_2011_West.csv";
 import East_conf_2010 from "../data/conference/east/df_2010_East.csv";
 import West_conf_2010 from "../data/conference/west/df_2010_West.csv";
+
+// importing stats for players
+import players_2022 from "../data/players/df_2022_player.csv"
+import players_2021 from "../data/players/df_2021_player.csv"
+import players_2020 from "../data/players/df_2020_player.csv"
+import players_2019 from "../data/players/df_2019_player.csv"
+import players_2018 from "../data/players/df_2018_player.csv"
+import players_2017 from "../data/players/df_2017_player.csv"
+import players_2016 from "../data/players/df_2016_player.csv"
+import players_2015 from "../data/players/df_2015_player.csv"
+import players_2014 from "../data/players/df_2014_player.csv"
+import players_2013 from "../data/players/df_2013_player.csv"
+import players_2012 from "../data/players/df_2012_player.csv"
+import players_2011 from "../data/players/df_2011_player.csv"
+import players_2010 from "../data/players/df_2010_player.csv"
 
 export default function Stats() {
   const [parsedCsvData, setParsedCsvData] = useState([]);

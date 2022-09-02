@@ -8,9 +8,13 @@ function Nav() {
       logo="My Logo"
       url={window.location.pathname}
       items={[
-        { content: "Stats", url: "/stats" },
         { content: "About", url: "/about" },
         { content: "Shop", url: "/shop" },
+        { content: "Stats", url: "/stats" ,
+          children: [
+            { content: "players", url: "/stats/players" },
+            { content: "teams", url: "/stats/teams"}
+          ]},
         {
           content: "Link with children",
           url: "/children",
