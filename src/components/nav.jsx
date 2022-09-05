@@ -9,7 +9,14 @@ function Nav() {
       url={window.location.pathname}
       items={[
         { content: "About", url: "/about" },
-        { content: "Shop", url: "/shop" },
+        {
+          content: "Graphs",
+          url: "/graphs",
+          children: [
+            { content: "teams", url: "/graphs/teams" },
+            { content: "players", url: "/graphs/players" },
+          ],
+        },
         {
           content: "Stats",
           url: "/stats",

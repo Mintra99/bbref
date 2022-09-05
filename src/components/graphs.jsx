@@ -1,11 +1,11 @@
 import React from "react";
 
-function Shop() {
+function Graphs() {
   return (
     <div>
-      <h1>Shop</h1>
+      <h1>Graphs</h1>
     </div>
   );
 }
 
-export default Shop;
+export default Graphs;

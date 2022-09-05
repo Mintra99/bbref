@@ -1,6 +1,6 @@
 import React from "react";
 import Nav from "./nav";
-import Shop from "./shop";
+import Graphs from "./graphs";
 import About from "./about";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Stats from "./stats";
@@ -17,7 +17,9 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/shop" exact element={<Shop />} />
+          <Route path="/graphs" exact element={<Graphs />} />
+          <Route path="/graphs/teams" exact element={<Graphs />} />
+          <Route path="/graphs/players" exact element={<Graphs />} />
           <Route path="/stats" exact element={<Stats />} />
           <Route path="/stats/teams" exact element={<TeamStats />} />
           <Route path="/stats/players" exact element={<PlayerStats />} />

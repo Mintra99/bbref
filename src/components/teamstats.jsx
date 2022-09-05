@@ -33,15 +33,24 @@ import West_conf_2011 from "../data/conference/west/df_2011_West.csv";
 import East_conf_2010 from "../data/conference/east/df_2010_East.csv";
 import West_conf_2010 from "../data/conference/west/df_2010_West.csv";
 
+// TODO: fix the sort thing (where num has become string so it sorts wierd)
 export default function TeamStats() {
   const [parsedCsvData, setParsedCsvData] = useState([]);
 
-  const [sortedField, setSortedField] = useState(null);
-  const [sortOrder, setSortOrder] = useState("ascn");
+  const [sortedField, setSortedField] = useState("W");
 
   const [conference, setConference] = useState("East");
   const [year, setYear] = useState("2022");
   const csv_data = useRef(East_conf_2022);
+
+  const requestSort = (key) => {
+    console.log(key);
+    let direction = "ascending";
+    if (sortedField.key === key && sortedField.direction === "ascending") {
+      direction = "descending";
+    }
+    setSortedField({ key, direction });
+  };
 
   useEffect(() => {
     // Selects year and conference
@@ -165,14 +174,32 @@ export default function TeamStats() {
       const results = Papa.parse(csv, { header: true }); // object with { data, errors, meta }
       results.data.pop(); // removes the last value because it is empty
       const rows = results.data; // array of objects
-      setParsedCsvData(rows);
+
+      // Sorts the list
+      let sortedProducts = [...rows];
+      if (sortedField !== null) {
+        console.log(sortedField);
+        sortedProducts.sort((a, b) => {
+          if (a[sortedField.key] < b[sortedField.key]) {
+            return sortedField.direction === "ascending" ? -1 : 1;
+          }
+          if (a[sortedField.key] > b[sortedField.key]) {
+            return sortedField.direction === "ascending" ? 1 : -1;
+          }
+          return 0;
+        });
+      }
+      setParsedCsvData(sortedProducts);
     }
     getData();
-  }, [conference, year]);
+  }, [conference, year, sortedField]);
 
   return (
     <div className="Stats" style={{ margin: "20px" }}>
-      <div className="Stats-dropdown" style={{ display: "flex", gap: "1rem" }}>
+      <div
+        className="Stats-dropdown"
+        style={{ display: "flex", gap: "1rem", float: "right" }}
+      >
         <DropdownButton
           variant="dark"
           title="Select a conference"
@@ -212,42 +239,42 @@ export default function TeamStats() {
         <thead>
           <tr>
             <th>
-              <button type="button" onClick={() => setSortedField("Team")}>
+              <button type="button" onClick={() => requestSort("Team")}>
                 Teams
               </button>
             </th>
             <th>
-              <button type="button" onClick={() => setSortedField("W")}>
+              <button type="button" onClick={() => requestSort("W")}>
                 Wins
               </button>
             </th>
             <th>
-              <button type="button" onClick={() => setSortedField("L")}>
+              <button type="button" onClick={() => requestSort("L")}>
                 Losses
               </button>
             </th>
             <th>
-              <button type="button" onClick={() => setSortedField("WL")}>
+              <button type="button" onClick={() => requestSort("W/L%")}>
                 W/L%
               </button>
             </th>
             <th>
-              <button type="button" onClick={() => setSortedField("GB")}>
+              <button type="button" onClick={() => requestSort("GB")}>
                 GB
               </button>
             </th>
             <th>
-              <button type="button" onClick={() => setSortedField("PSG")}>
+              <button type="button" onClick={() => requestSort("PS/G")}>
                 PS/G
               </button>
             </th>
             <th>
-              <button type="button" onClick={() => setSortedField("PAG")}>
+              <button type="button" onClick={() => requestSort("PA/G")}>
                 PA/G
               </button>
             </th>
             <th>
-              <button type="button" onClick={() => setSortedField("Playoffs")}>
+              <button type="button" onClick={() => requestSort("Playoffs")}>
                 Playoffs
               </button>
             </th>
