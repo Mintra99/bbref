@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Stats from "./stats";
 import PlayerStats from "./playerstats";
 import TeamStats from "./teamstats";
+import TeamGraph from "./teamgraphs";
 
 // To add more routes, create them under <Routes>
 
@@ -18,7 +19,7 @@ function App() {
           <Route path="/" exact element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/graphs" exact element={<Graphs />} />
-          <Route path="/graphs/teams" exact element={<Graphs />} />
+          <Route path="/graphs/teams" exact element={<TeamGraph />} />
           <Route path="/graphs/players" exact element={<Graphs />} />
           <Route path="/stats" exact element={<Stats />} />
           <Route path="/stats/teams" exact element={<TeamStats />} />
