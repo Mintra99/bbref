@@ -7,6 +7,7 @@ import Stats from "./stats";
 import PlayerStats from "./playerstats";
 import TeamStats from "./teamstats";
 import TeamGraph from "./teamgraphs";
+import PlayerGraph from "./playergraphs";
 
 // To add more routes, create them under <Routes>
 
@@ -20,7 +21,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/graphs" exact element={<Graphs />} />
           <Route path="/graphs/teams" exact element={<TeamGraph />} />
-          <Route path="/graphs/players" exact element={<Graphs />} />
+          <Route path="/graphs/players" exact element={<PlayerGraph />} />
           <Route path="/stats" exact element={<Stats />} />
           <Route path="/stats/teams" exact element={<TeamStats />} />
           <Route path="/stats/players" exact element={<PlayerStats />} />

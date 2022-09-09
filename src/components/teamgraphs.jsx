@@ -3,6 +3,7 @@ import Plot from "react-plotly.js";
 import Papa from "papaparse";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
+import "./css/QuantityInput.css";
 
 import team_data from "../data/nba_team_data.csv";
 
