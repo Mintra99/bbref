@@ -13,11 +13,15 @@ export default function Graphs() {
   const [parsedCsvData, setParsedCsvData] = useState([]);
   const [selectedYear, setSelectedYear] = useState("2022");
   const [playersList, setPlayersList] = useState([]);
-  const [player1, setPlayer1] = useState();
-  const [player2, setPlayer2] = useState();
+  const [player1, setPlayer1] = useState("Giannis Antetokounmpo");
+  const [player2, setPlayer2] = useState("Joel Embiid");
   const [statsList, setStatsList] = useState([]);
   const [PTS, setPTS] = useState([]);
   const [AST, setAST] = useState([]);
+  const [REB, setREB] = useState([]);
+  const [STL, setSTL] = useState([]);
+  const [BLK, setBLK] = useState([]);
+  const [TOV, setTOV] = useState([]);
   const [vsPlayers, setVsPlayers] = useState([]);
 
   const years = [
@@ -72,34 +76,54 @@ export default function Graphs() {
       setStatsList(currPlayerStats);
     }
     getPlayers();
-  }, [selectedYear]);
+  }, [selectedYear, parsedCsvData]);
 
   useEffect(() => {
     // displays players
     function displayPlayers() {
       let ptsList = [];
       let astList = [];
+      let rebList = [];
+      let stlList = [];
+      let blkList = [];
+      let tovList = [];
       let vsPlayersList = [];
 
       for (const i in statsList) {
         if (statsList[i].Player === player1) {
+          let reb =
+            parseFloat(statsList[i].ORB, 2) + parseFloat(statsList[i].DRB, 2);
+          rebList.push(reb);
           astList.push(statsList[i].AST);
           vsPlayersList.push(statsList[i].Player);
           ptsList.push(statsList[i].PTS);
+          stlList.push(statsList[i].STL);
+          blkList.push(statsList[i].BLK);
+          tovList.push(statsList[i].TOV);
         }
         if (statsList[i].Player === player2) {
+          let reb =
+            parseFloat(statsList[i].ORB, 2) + parseFloat(statsList[i].DRB, 2);
+          rebList.push(reb);
           astList.push(statsList[i].AST);
           vsPlayersList.push(statsList[i].Player);
           ptsList.push(statsList[i].PTS);
+          stlList.push(statsList[i].STL);
+          blkList.push(statsList[i].BLK);
+          tovList.push(statsList[i].TOV);
         }
       }
 
       setPTS(ptsList);
       setAST(astList);
+      setREB(rebList);
+      setSTL(stlList);
+      setBLK(blkList);
+      setTOV(tovList);
       setVsPlayers(vsPlayersList);
     }
     displayPlayers();
-  }, [player1, player2]);
+  }, [player1, player2, statsList]);
 
   const renderDropdown_year = () => {
     // Renders dropdown for years
@@ -165,7 +189,18 @@ export default function Graphs() {
             textinfo: "value",
           },
         ]}
-        layout={{ title: "Points per game" }}
+        layout={{ width: 550, height: 400, title: "Points per game" }}
+      />
+      <Plot
+        data={[
+          {
+            type: "pie",
+            values: REB,
+            labels: vsPlayers,
+            textinfo: "value",
+          },
+        ]}
+        layout={{ width: 550, height: 400, title: "Rebounds per game" }}
       />
       <Plot
         data={[
@@ -176,7 +211,40 @@ export default function Graphs() {
             textinfo: "value",
           },
         ]}
-        layout={{ title: "Assist per game" }}
+        layout={{ width: 550, height: 400, title: "Assist per game" }}
+      />
+      <Plot
+        data={[
+          {
+            type: "pie",
+            values: STL,
+            labels: vsPlayers,
+            textinfo: "value",
+          },
+        ]}
+        layout={{ width: 550, height: 400, title: "Steals per game" }}
+      />
+      <Plot
+        data={[
+          {
+            type: "pie",
+            values: BLK,
+            labels: vsPlayers,
+            textinfo: "value",
+          },
+        ]}
+        layout={{ width: 550, height: 400, title: "Blocks per game" }}
+      />
+      <Plot
+        data={[
+          {
+            type: "pie",
+            values: TOV,
+            labels: vsPlayers,
+            textinfo: "value",
+          },
+        ]}
+        layout={{ width: 550, height: 400, title: "Turnovers per game" }}
       />
     </div>
   );
